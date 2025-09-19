@@ -42,7 +42,8 @@ object paqueteOriginal{
 
 object empresaDeMensajeria {
 
-  const empleados = [Roberto, Neo]
+  const empleados = [Roberto, Neo, ChuckNorris]
+  const empleadosQuePuedenLevarUnPaquete = []
   
   method contratarMensajero(unMensajero){
     empleados.add(unMensajero)
@@ -60,10 +61,35 @@ object empresaDeMensajeria {
     return empleados.size() > 2
   }
 
-  method primero(){
-    return empleados[0]
-
+  method elPaquetePuedeSerEntregadoPorElPrimero(unPaquete, unDestino){
+     return self.primero().puedeLlevarElPaquete(unPaquete, unDestino)
   }
+
+  method siElPaquete_PuedeSerEntregadoPor(unPaquete, unDestino){
+     empleados.forEach({
+      empleado =>
+      if(empleado.puedeLlevarElPaquete(unPaquete, unDestino)){
+         empleadosQuePuedenLevarUnPaquete.add(empleado)
+      }
+     })
+  }
+
+  method empleadosQuePuedenLevarUnPaquete() {
+    return (empleadosQuePuedenLevarUnPaquete)
+  }
+
+  method pesoUltimoPj(){
+     return self.ultimo().pesoTotal()
+  }
+
+  method primero(){
+    return empleados.first()
+  }
+
+  method ultimo(){
+    return empleados.last()
+  }
+
 }
 
 object paquetito {
@@ -73,6 +99,5 @@ object paquetito {
 
 object paquetonViajero {
    method precio() = 100 // $
-   method debePoderPasarPorTodosLosDestinos() = true
+   method pasaPorTodosLosDestinos() = true
 }
-
