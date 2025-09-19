@@ -42,17 +42,28 @@ object paqueteOriginal{
 
 object empresaDeMensajeria {
 
-  var primerEmpleado = null
-
-  var ultimoEmpleado = null
+  const empleados = [Roberto, Neo]
   
-  method contratarMensajero(unMensajero){}
+  method contratarMensajero(unMensajero){
+    empleados.add(unMensajero)
+  }
 
-  method despedirMensajero(unMensajero){}
+  method despedirMensajero(unMensajero){
+    if(empleados.contains(unMensajero)) empleados.remove(unMensajero)
+  }
 
-  method despedirATodosLosMensajeros(){}
+  method despedirATodosLosMensajeros(){
+    empleados.clear()
+  }
 
-  method mensajeriaEsGrande(){}
+  method mensajeriaEsGrande(){
+    return empleados.size() > 2
+  }
+
+  method primero(){
+    return empleados[0]
+
+  }
 }
 
 object paquetito {
